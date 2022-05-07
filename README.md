@@ -1,4 +1,3 @@
-# shilpa-eims-frontend
 
 > A Vue.js project
 
