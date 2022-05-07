@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> c44d97ff78dd63bcf03733f5f20bad3c68e35016
 
 > A Vue.js project
 
