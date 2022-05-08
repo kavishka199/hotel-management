@@ -2,7 +2,7 @@
   <div class="container p-0">
     <navbar />
     <form class="contained-box">
-      <h4>Add New Item</h4>
+      <h4>Edit Item</h4>
 
       <div class="row gap-5 m-0">
         <div class="col-md-6">
@@ -14,7 +14,7 @@
           </div>
 
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">NameSTest</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
               <input v-model="form.name" type="text" class="form-control">
             </div>
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-          <input @click="onSubmit" type="button" class="btn btn-success" value="Add New" />
+          <input @click="onSubmit" type="button" class="btn btn-success" value="Update" />
         </div>
       </div>
 
@@ -84,18 +84,31 @@ export default {
         price: '',
         type: '',
         description: ''
-      }
+      },
+      allItems: []
     }
   },
   components: {
     Navbar,
   },
+  created() {
+      this.fetchData();
+  },
   methods: {
+    fetchData() {
+      this.$http
+        .get("http://localhost:8090/api/inventory")
+        .then(function (response) {
+          console.log(response);
+          this.allItems = response.body;
+          this.form = this.allItems.find(i => i._id === this.$route.params.id);
+        });
+    },
     onSubmit() {
-      this.$http.post('http://localhost:8090/api/inventory', this.form).then(function (response) { 
+      this.$http.put(`http://localhost:8090/api/inventory/${this.$route.params.id}`, this.form).then(function (response) { 
         console.log(response);
         alert("Success")
-      })
+      });
     }
   }
 };
