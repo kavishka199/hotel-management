@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <input @click="onSubmit" type="button" class="btn btn-success" value="Add New" />
+          <input @click="onSubmit" type="button" class="btn btn-success" value="Update" />
         </div>
       </div>
 
@@ -43,6 +43,7 @@ import Navbar from "../../components/navbar/Navbar.vue";
 export default {
   data() {
     return {
+      allItems: [],
       form: {
         roomName: '',
         roomType: '',
@@ -53,20 +54,24 @@ export default {
   components: {
     Navbar,
   },
+  created() {
+    this.fetchData();
+  },
   methods: {
     fetchData() {
       this.$http
         .get("http://localhost:8090/api/room")
         .then(function (response) {
           console.log(response);
-          this.form = response.body.find(i => i._id === this.params.id)
+          this.allItems = response.body;
+          this.form = this.allItems.find(i => i._id === this.$route.params.id);
         });
     },
     onSubmit() {
-      this.$http.post('http://localhost:8090/api/room', this.form).then(function (response) { 
+      this.$http.put(`http://localhost:8090/api/room/${this.$route.params.id}`, this.form).then(function (response) { 
         console.log(response);
         alert("Success")
-      })
+      });
     }
   }
 };
