@@ -2,42 +2,35 @@
   <div class="container p-0">
     <navbar />
     <form class="contained-box">
-      <h4>Add New Item</h4>
+      <h4>Edit Room</h4>
 
       <div class="row gap-5 m-0">
         <div class="col-md-6">
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">Inventory ID</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">Event ID</label>
             <div class="col-sm-9">
-              <input v-model="form.inventoryId" type="text" class="form-control">
+              <input v-model="form.eventId" type="text" class="form-control">
             </div>
           </div>
 
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">NameTest</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">Name</label>
             <div class="col-sm-9">
               <input v-model="form.name" type="text" class="form-control">
             </div>
           </div>
 
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">Quantity</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">Event Date</label>
             <div class="col-sm-9">
-              <input v-model="form.quantity" type="number" class="form-control">
+              <input v-model="form.eventDate" type="date" class="form-control">
             </div>
           </div>
 
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">Price</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">Event Type</label>
             <div class="col-sm-9">
-              <input v-model="form.price" type="text" class="form-control">
-            </div>
-          </div>
-
-          <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">Type</label>
-            <div class="col-sm-9">
-              <select v-model="form.type" class="form-select" aria-label="Default select example">
+              <select v-model="form.eventType" class="form-select" aria-label="Default select example">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -52,17 +45,16 @@
               <textarea v-model="form.description" cols="15" rows="10" class="form-control"></textarea>
             </div>
           </div>
+
         </div>
         <div class="col-md-5">
-          <div class="mb-3 row text-center">
-            <label class="form-label">Upload Photo</label>
-            <div class="input-group mb-3">
-              <input type="file" class="form-control" id="inputGroupFile02">
-              <label class="input-group-text" for="inputGroupFile02">Upload</label>
-            </div>
-          </div>
+        </div>
 
-          <input @click="onSubmit" type="button" class="btn btn-success" value="Add New" />
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-5">
+            <input @click="onSubmit" type="button" class="btn btn-success" value="Update" />
+          </div>
         </div>
       </div>
 
@@ -78,21 +70,33 @@ export default {
   data() {
     return {
       form: {
-        inventoryId: '',
+        eventId: '',
         name: '',
-        quantity: '',
-        price: '',
-        type: '',
+        eventDate: '',
+        eventType: '',
         description: ''
-      }
+      },
+      allItems: []
     }
   },
   components: {
     Navbar,
   },
+  created() {
+      this.fetchData();
+  },
   methods: {
+    fetchData() {
+      this.$http
+        .get("http://localhost:8090/api/event")
+        .then(function (response) {
+          console.log(response);
+          this.allItems = response.body;
+          this.form = this.allItems.find(i => i._id === this.$route.params.id);
+        });
+    },
     onSubmit() {
-      this.$http.post('http://localhost:8090/api/inventory', this.form).then(function (response) { 
+      this.$http.put(`http://localhost:8090/api/event/${this.$route.params.id}`, this.form).then(function (response) { 
         console.log(response);
         alert("Success")
       })

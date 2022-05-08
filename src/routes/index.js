@@ -7,10 +7,13 @@ import Rooms from '../pages/rooms/Rooms.vue';
 import RoomEdit from '../pages/rooms/Edit.vue';
 import AddRoom from '../pages/rooms/Add.vue';
 import Packages from '../pages/packages/Packages.vue';
+import EditPackages from '../pages/packages/Edit.vue';
 import AddPackage from '../pages/packages/Add.vue';
 import Inventory from '../pages/inventory/Inventory.vue';
 import AddInventory from '../pages/inventory/Add.vue';
+import EditInventory from '../pages/inventory/Edit.vue';
 import Events from '../pages/events/Events.vue';
+import EditEvents from '../pages/events/Edit.vue';
 import AddEvent from '../pages/events/Add.vue';
 import Home from '../pages/Home.vue';
 import AboutUs from '../pages/AboutUs.vue';
@@ -25,7 +28,7 @@ export default new Router({
     {
       path: "/",
       name: "Root",
-      component: Packages,
+      component: Home,
     },
     {
       path: "/rooms",
@@ -48,6 +51,11 @@ export default new Router({
       component: Packages,
     },
     {
+      path: "/packages/:id",
+      name: "Edit Packages",
+      component: EditPackages,
+    },
+    {
       path: "/packages/insert",
       name: "Add Package",
       component: AddPackage,
@@ -56,6 +64,11 @@ export default new Router({
       path: "/inventory",
       name: "Inventory",
       component: Inventory,
+    },
+    {
+      path: "/inventory/:id",
+      name: "Edit Inventory",
+      component: EditInventory,
     },
     {
       path: "/inventory/insert",
@@ -71,6 +84,11 @@ export default new Router({
       path: "/events/insert",
       name: "Add Event",
       component: AddEvent,
+    },
+    {
+      path: "/events/:id",
+      name: "Edit Event",
+      component: EditEvents,
     },
     {
       path: "/Home",
