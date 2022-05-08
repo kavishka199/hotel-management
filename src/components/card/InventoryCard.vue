@@ -3,7 +3,7 @@
     <img :src="photo" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{title}}</h5>
-      <button type="button" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-primary" @click="editCard">Edit</button>
       <button type="button" class="btn btn-primary" @click="deleteCard()">
         Delete
       </button>
@@ -44,6 +44,10 @@ export default {
         }
       });
     },
+    editCard() {
+      console.log(this.id);
+      this.$router.push(`/inventory/${this.id}`);
+    }
   },
 }
 </script>
