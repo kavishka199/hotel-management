@@ -5,7 +5,7 @@
       <div class="col-md-4">
       </div>
       <div class="col-md-4 text-center">
-        <h3>Inventory</h3>
+        <h3><center>Inventory</center></h3>
       </div>
       <div class="col-md-4">
         <div class="input-group mb-3">

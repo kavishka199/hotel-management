@@ -2,7 +2,7 @@
   <div class="container p-0">
     <navbar />
     <div>
-        <h1>kavishka</h1>
+        <h1><b><center>Welcome to Kandy Riverside Villa</center></b></h1>
 
     
 
