@@ -14,7 +14,7 @@
           </div>
 
           <div class="mb-3 row">
-            <label for="pkgid" class="col-sm-3 col-form-label">NameSTest</label>
+            <label for="pkgid" class="col-sm-3 col-form-label">NameTest</label>
             <div class="col-sm-9">
               <input v-model="form.name" type="text" class="form-control">
             </div>

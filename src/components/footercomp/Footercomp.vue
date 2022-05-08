@@ -15,6 +15,15 @@ export default {
 <style>
 .footercomp {
   background: #020759;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background: #111;*/
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #020759;
 }
 
 .content {
