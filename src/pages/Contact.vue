@@ -2,7 +2,7 @@
   <div class="container p-0">
     <navbar />
     <div>
-        <h1>kavishka</h1>
+        <h1 style="font-family:Sans-serif;color:brown"><b><center>Contact Us</center></b></h1>
     </div>
    
     
