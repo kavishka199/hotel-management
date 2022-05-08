@@ -16,7 +16,7 @@ export default {
 .footercomp {
   background: #020759;
     position: absolute;
-    bottom: 0;
+    bottom: -150px;
     left: 0;
     right: 0;
     /*background: #111;*/
